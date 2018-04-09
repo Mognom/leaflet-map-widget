@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="leaflet-map" version="0.1.0">
+
+    <details>
+        <title>Leaflet map viewer</title>
+        <homepage>https://github.com/mognom/leaflet-map-widget</homepage>
+        <authors>Alejandro Rodríguez Fraga</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Map viewer using the Leaflet API</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/userguide.md</doc>
+        <license>MIT</license>
+        <issuetracker>https://github.com/mognom/leaflet-map-widget/issues</issuetracker>
+    </details>
+
+    <preferences>
+        <preference name="initialCenter" type="text" label="Initial Location" description="Decimal coordinates where map will be centered on load (e.g. `52, 5`). Leave this setting empty if you don't want to center the map at init. Remember to change the initial zoom level if you provide an initial location." default="" />
+        <preference name="initialZoom" type="text" label="Initial Zoom Level" description="Initial zoom level. From 1 to 22, where '1' represents the furthest level and '22' the maximum zoom level." default="3" />
+    </preferences>
+
+    <wiring>
+        <inputendpoint name="poiInput" type="text" label="Insert/Update PoI" description="Insert or update a Point of Interest." friendcode="poi poi-list"/>
+        <inputendpoint name="replacePoIs" type="text" label="Replace PoIs" description="Replace all the rendered PoIs by the ones provided in the event." friendcode="poi poi-list"/>
+        <inputendpoint name="heatmap" type="text" label="Add heatmap layer" description="Add a heatmap layer to the map" friendcode="heatmap"/>
+
+        <outputendpoint name="poiOutput" type="text" label="PoI selected" description="A PoI has been selected on the map" friendcode="poi"/>
+        <outputendpoint name="poiListOutput" type="text" label="Visible PoIs" description="List of visible PoIs" friendcode="poi-list"/>
+    </wiring>
+
+    <contents src="index.html" useplatformstyle="true"/>
+    <rendering height="300px" width="300px"/>
+
+</widget>
