@@ -46,7 +46,7 @@
         MashupPlatform.wiring.registerCallback("heatmap", function(config) {
             var data = parseInputEndpointData(config);
 
-            addHeatmap(data);
+            addHeatmap(data.data);
         });
 
         createMap();
@@ -168,7 +168,16 @@
     };
 
     // Add a heatmap layer
+    var heatmapLayer;
     var addHeatmap = function addHeatmap(data) {
+        if (heatmapLayer) {
+            map.removeLayer(heatmapLayer);
+            heatmapLayer = null;
+        }
+
+        if (data.features.length <= 0) {
+            return;
+        }
 
         var cfg = {
             // radius should be small ONLY if scaleRadius is true (or small radius is intended)
@@ -180,7 +189,7 @@
             // if set to false the heatmap uses the global maximum for colorization
             // if activated: uses the data maximum within the current map boundaries 
             //   (there will always be a red spot with useLocalExtremas true)
-            "useLocalExtrema": true,
+            "useLocalExtrema": data.useLocalExtrema || true,
             // which field name in your data represents the latitude - default "lat"
             latField: 'lat',
             // which field name in your data represents the longitude - default "lng"
@@ -189,14 +198,8 @@
             valueField: 'weight'
         };
         
-        var heatmapLayer = new HeatmapOverlay(cfg);
+        heatmapLayer = new HeatmapOverlay(cfg);
         heatmapLayer.addTo(map);
-
-        data.features.map(function (d) {
-            d.lat = d.location.coordinates[1];
-            d.lng = d.location.coordinates[0];
-            return d;
-        });
 
         var source = {
             max: data.max,
