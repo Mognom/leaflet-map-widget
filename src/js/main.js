@@ -57,8 +57,8 @@
         var baseLayer = L.tileLayer(
             'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-                maxZoom: parseInt(MashupPlatform.prefs.get('maxZoom'), 10),
-                minZoom: parseInt(MashupPlatform.prefs.get('minxZoom'), 10)
+                maxZoom: parseInt(MashupPlatform.prefs.get('maxzoom'), 10),
+                minZoom: parseInt(MashupPlatform.prefs.get('minzoom'), 10)
             }
         );
 
