@@ -22,7 +22,7 @@
         // Register callbacks
         MashupPlatform.wiring.registerCallback('poiInput', function (poi_info) {
             poi_info = parseInputEndpointData(poi_info);
-    
+
             if (!Array.isArray(poi_info)) {
                 poi_info = [poi_info];
             }
@@ -30,10 +30,10 @@
 
             sendVisiblePoIs();
         });
-    
+
         MashupPlatform.wiring.registerCallback('replacePoIs', function (poi_info) {
             poi_info = parseInputEndpointData(poi_info);
-    
+
             removePoIs();
             if (!Array.isArray(poi_info)) {
                 poi_info = [poi_info];
@@ -43,7 +43,7 @@
             sendVisiblePoIs();
         });
 
-        MashupPlatform.wiring.registerCallback("heatmap", function(config) {
+        MashupPlatform.wiring.registerCallback("heatmap", function (config) {
             var data = parseInputEndpointData(config);
 
             addHeatmap(data);
@@ -51,7 +51,7 @@
 
         createMap();
     };
-    
+
     var createMap = function createMap() {
 
         var baseLayer = L.tileLayer(
@@ -91,7 +91,7 @@
     };
 
     // Remove all markers
-    var removePoIs = function removePoIs(){
+    var removePoIs = function removePoIs() {
         map.eachLayer(function (layer) {
             if (layer instanceof L.Marker) {
                 map.removeLayer(layer);
@@ -156,11 +156,11 @@
         // Gather visible pois
         var data = [];
         for (var poi in PoIs) {
-            if(map.getBounds().contains(PoIs[poi].getLatLng())) { 
+            if (map.getBounds().contains(PoIs[poi].getLatLng())) {
                 data.push(PoIs[poi].data);
             }
         }
-        
+
         MashupPlatform.widget.outputs.poiListOutput.pushEvent(data);
     };
 
@@ -186,9 +186,9 @@
             "radius": data.radius,
             "maxOpacity": 0.8,
             // scales the radius based on map zoom
-            "scaleRadius": true, 
+            "scaleRadius": true,
             // if set to false the heatmap uses the global maximum for colorization
-            // if activated: uses the data maximum within the current map boundaries 
+            // if activated: uses the data maximum within the current map boundaries
             //   (there will always be a red spot with useLocalExtremas true)
             "useLocalExtrema": data.useLocalExtrema || true,
             // which field name in your data represents the latitude - default "lat"
@@ -198,7 +198,7 @@
             // which field name in your data represents the data value - default "value"
             valueField: 'weight'
         };
-        
+
         heatmapLayer = new HeatmapOverlay(cfg);
         heatmapLayer.addTo(map);
 
