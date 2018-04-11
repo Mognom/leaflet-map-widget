@@ -34,7 +34,7 @@
         MashupPlatform.wiring.registerCallback('replacePoIs', function (poi_info) {
             poi_info = parseInputEndpointData(poi_info);
 
-            removePoIs();
+            removeAllPoIs();
             if (!Array.isArray(poi_info)) {
                 poi_info = [poi_info];
             }
@@ -47,6 +47,15 @@
             var data = parseInputEndpointData(config);
 
             addHeatmap(data);
+        });
+
+        MashupPlatform.wiring.registerCallback('deletePoiInput', function (poi_info) {
+            poi_info = parseInputEndpointData(poi_info);
+
+            if (!Array.isArray(poi_info)) {
+                poi_info = [poi_info];
+            }
+            poi_info.forEach(removePoI);
         });
 
         createMap();
@@ -91,7 +100,7 @@
     };
 
     // Remove all markers
-    var removePoIs = function removePoIs() {
+    var removeAllPoIs = function removeAllPoIs() {
         map.eachLayer(function (layer) {
             if (layer instanceof L.Marker) {
                 map.removeLayer(layer);
@@ -99,6 +108,14 @@
         });
 
         PoIs = {};
+    };
+
+    // Remove a marker from the map
+    var removePoI = function removePoI(poi) {
+        var p = PoIs[poi.id]
+        map.removeLayer(p);
+
+        PoIs[poi.id] = null;
     };
 
     var registerPoI = function registerPoI(poi_info) {

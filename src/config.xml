@@ -26,6 +26,7 @@
     <wiring>
         <inputendpoint name="poiInput" type="text" label="Insert/Update PoI" description="Insert or update a Point of Interest." friendcode="poi poi-list"/>
         <inputendpoint name="replacePoIs" type="text" label="Replace PoIs" description="Replace all the rendered PoIs by the ones provided in the event." friendcode="poi poi-list"/>
+        <inputendpoint name="deletePoiInput" type="text" label="Delete PoI" description="Removes one or more point of interests from the map." friendcode="poi poi-list" />
         <inputendpoint name="heatmap" type="text" label="Add heatmap layer" description="Add a heatmap layer to the map" friendcode="leaflet-heatmap"/>
 
         <outputendpoint name="poiOutput" type="text" label="PoI selected" description="A PoI has been selected on the map" friendcode="poi"/>
