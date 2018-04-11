@@ -6,8 +6,6 @@
 
     describe("LeafletMap", function () {
 
-        var widget;
-
         beforeAll(function () {
             window.MashupPlatform = new MockMP({
                 type: 'widget'
@@ -19,7 +17,7 @@
         });
 
         it("Dummy test", function () {
-            expect(widget).not.toBe(null);
+            expect(true).toBeTruthy();
         });
 
     });
