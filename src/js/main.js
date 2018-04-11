@@ -46,7 +46,7 @@
         MashupPlatform.wiring.registerCallback("heatmap", function(config) {
             var data = parseInputEndpointData(config);
 
-            addHeatmap(data.data);
+            addHeatmap(data);
         });
 
         createMap();
